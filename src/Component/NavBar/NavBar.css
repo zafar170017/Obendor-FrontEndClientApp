@@ -1,0 +1,165 @@
+.navbar-expand {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    
+}
+.navbar {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background-color: #008060;
+    border: 0;
+}
+.p-0 {
+    padding: 0 !important;
+}
+.navbar-expand {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+.text-center {
+    text-align: center !important;
+}
+.navbar-brand {
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.navbar .navbar-brand {
+    color: #fff;
+}
+a:link, .btn-link:link {
+    text-decoration: none;
+}
+
+.bg-primary-darkest {
+    background-color: #008060 !important;
+    border-color: #008060 !important;
+}
+.form-control, .dataTables_wrapper input[type="search"] {
+    display: block;
+    width: 100%;
+    padding: 0.425rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #008060;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+.border-white {
+    border-color: #fff !important;
+}
+
+.pb-2, .py-2 {
+    padding-bottom: 0.5rem !important;
+}
+select.form-control:not([size]):not([multiple]), .dataTables_wrapper .dataTables_length label select:not([size]):not([multiple]) {
+    background-image: url(data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20d%3D%22M13%208l-3-3-3%203h6zm-.1%204L10%2014.9%207.1%2012h5.8z%22%20fill%3D%22%23637381%22%20fill-rule%3D%22evenodd%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E);
+    background-size: auto 60%;
+    background-repeat: no-repeat;
+    background-position: 99% 50%;
+    height: calc(2.25rem + 2px);
+}
+
+select.form-control:not([size]):not([multiple]), .dataTables_wrapper .dataTables_length label select:not([size]):not([multiple]) {
+    height: calc(2.25rem + 2px);
+}
+select.form-control, .dataTables_wrapper .dataTables_length label select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f9fafb));
+    background: -webkit-linear-gradient(top, #fff, #f9fafb);
+    background: -o-linear-gradient(top, #fff, #f9fafb);
+    background: linear-gradient(to bottom, #fff, #f9fafb);
+}
+.form-control, .dataTables_wrapper input[type="search"] {
+    display: block;
+    width: 100%;
+    padding: 0.425rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: black;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+.form-control, .dataTables_wrapper input[type="search"] {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+.text-muted, input[type="radio"]:disabled + label, input[type="checkbox"]:disabled + label {
+    color: #6c757d !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+.p-4, .dataTables_wrapper .dataTables_paginate {
+    padding: 1.5rem !important;
+}
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #bbeef5 !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.15rem #bbeef5 !important;
+}
+input.bg-primary-darkest.form-control.d-none.d-md-block.w-50.ml-3.mr-2:focus {
+    background: #fff !important;
+}
+nav.navbar {
+    height: 57px;
+}

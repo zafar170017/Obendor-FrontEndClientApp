@@ -1,0 +1,17 @@
+.h-100 {
+  height: 100% !important;
+}
+.align-items-stretch {
+  -webkit-box-align: stretch !important;
+  -ms-flex-align: stretch !important;
+  align-items: stretch !important;
+}
+.flex-row {
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-direction: row !important;
+  flex-direction: row !important;
+}
+.container-fluid.h-100.p-0 {
+  background: #f4f6f8;
+}
