@@ -1,129 +1,292 @@
-import React, { Component } from 'react';
+import React, { Component,useState } from 'react';
 import './Dashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import background from './Image/main.png';
-class Dashboard extends Component {
-    render() {
+import { CalloutCard,ButtonGroup,DataTable, Subheading, Link, Page, TextField, Button, Heading, Select, RadioButton, Stack, Card, Layout, Checkbox, ProgressBar, TextStyle, DisplayText, List, Banner } from '@shopify/polaris';
+import firstImage from './Image/firstClass.svg'
+import support from './Image/support.svg';
+import review from './Image/review.jpg';
+import ManualFile from '../ManualUploader/ManualFile';
+
+
+function Dashboard(){
+    const [showDashboard, setShowDashboard] = useState(true);
+    const [showManualUpload, setshowManualUpload] = useState(false);
+    const hideDashboard = () => setShowDashboard(false);
+    const showManualUploadCmp = () => setshowManualUpload(true);
+        
+    function RedirectToPage(){
+ 
+        hideDashboard();
+        debugger
+        RedirectToPage1();
+    }
+    function RedirectToPage1(){
+        showManualUploadCmp();
+    }
+    const rows = [
+            ['10/28/2021', 'Finished', 124689, '12MB', '120MB', '10.5K%', 'Details'],
+
+            ['10/28/2021', 'Finished', 124689, '12MB', '120MB', '10.5K%', 'Details'],
+
+        ];
         return (
-            <div className="col-lg-12 col-md-9">
-                <div className='row'>
+            <div>
+            { showDashboard ?
+            <Page>
+                <Heading element="h1"> Image Optimize Dashboard</Heading>
+                <p>With its best-in-class algorithms Image Optimizer gives you an incredible level of image compression and optimization.</p>
+                <br />
+                <Banner
+                    title="You've reached the Free plan limit"
+                    action={{ content: 'Recheck', url: '' }}
+                    secondaryAction={{ content: 'Uprade Plan' }}
+                    status="info"
+                    onDismiss={() => { }}
+                >
+                    <p>There are 12 images that can be optimized.</p>
 
-                    <div class="col-lg-7 pl-3 pt-2 pb-2 pr-2 back1" style={{ backgroundImage: `url(${background})` }}>
-                        <div class="greeting mt-4 pl-4">
-                            <h3>
-                                Good Evening, Manda
-                            </h3>
-                            <h4 class="text-muted w-50 fw-normal">
-                                Here's what's happening with your store today.
-                            </h4>
 
-
-                        </div>
-
-                        <div class="row store-insight pl-4">
-                            <div class="col-5">
-                                <div>
-                                    <h5 className="head1">Today's Sales</h5>
-                                    </div>
-                                <h4 class="fw-normal">
-                                    $8900.00
-                                </h4>
-                            </div>
-                            <div class="col-5">
-                                <div>
-                                    <h5 className="head1">Today's Visits</h5>
-                                    </div>
-                                <h4 class="fw-normal">
-                                    37849
-                                </h4>
-                            </div>
-
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <div class="card border-warning-light m-4 p-2 bg-warning-light shadow-sm">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item bg-warning-light">
-                                            <span class="d-block mb-2 fw-bold"> 10 tips to increase sales!.</span>
-                                            <p>
-                                                Here are some basic steps you can take to improve your sales performance, reduce your cost of selling, and ensure your great business.
-                                            </p>
-                                            <a href="#" class="btn btn-link text-primary pl-0">Learn more</a>
-                                        </li>
-                                        <li class="list-group-item bg-warning-light">
-                                            <span class="d-block mb-2 fw-bold"> Get more customers!</span>
-                                            <p>
-                                                Learn how to get more customers with this step-by-step guide from expert marketers!
-                                            </p>
-                                            <a href="#" class="btn btn-link text-primary pl-0">Learn more</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                </Banner>
+                <br />
+                <div className="row">
+                    <div className="col-md-4">
+                        <Layout>
+                            <Layout.Section>
+                                <Card title="Your Average Savings" sectioned>
+                                    <p>Products</p>
+                                    <br/>    <br/><br/>
+                                    <Card title="Products" sectioned>
+                                    <List >
+  <List.Item>Total :<b> 62/List.Item</b></List.Item>
+  <List.Item>Compress :<b> N/A</b></List.Item>
+  <List.Item>Restore :<b> N/A</b></List.Item>
+</List>
+</Card>
+                                
+                                </Card>
+                            </Layout.Section>
+                        </Layout>
                     </div>
 
-                    <div class="col-lg-5 pt-2 pb-2 bg-white shadow-sm border-left border-white">
-                    <div class="row p-4">
-                <div class="col-md-6 mb-1 mb-sm-0">
-                  <select class="form-control" name="" id="">
-                    <option value="1">All Channel</option>
-                    <option value="2">Front store</option>
-                    <option value="3">Mobile</option>
-                  </select>
+                    <div className="col-md-4">
+                        <Layout>
+                            <Layout.Section>
+                                <Card title="Account Overview" sectioned>
+                                    <p>View a summary  store’s performance.</p>
+                                    <br/>    <br/><br/>
+                                    <Card title="Assets" sectioned>
+                                    <List >
+  <List.Item>Total :<b> N/A </b></List.Item>
+  <List.Item>Compress :<b> N/A</b></List.Item>
+  <List.Item>Restore :<b> N/A</b></List.Item>
+</List>
+</Card>
+                                
+                                </Card>
+                            </Layout.Section>
+                        </Layout>
+                    </div>
+
+                    <div className="col-md-4">
+                        <Layout>
+                            <Layout.Section>
+                                <Card title="Your Average Savings" sectioned>
+                                    <div className="planeLevel">Plan Level
+
+                                    </div>
+
+                                    <div className="planeLevel">
+                                        <Link url="#">Free plan</Link>
+
+                                    </div><br />
+                                    <div className="planeLevel">Mode
+
+                                    </div>
+
+                                    <div className="planeLevel">
+                                        <Link url="#">Automatic</Link>
+
+                                    </div>
+                                    <br />
+                                    <div className="planeLevel">Current Usage
+
+                                    </div>
+
+                                    <div className="planeLevel">
+                                        <p>10 Images</p>
+
+                                    </div>
+                                    <br /> <br/> 
+                                    <div className="planeLevel"><Button primary>Add product</Button>
+                                   
+                                    </div>
+
+
+                                </Card>
+                            </Layout.Section>
+                        </Layout>
+                    </div>
+
                 </div>
-                <div class="col-md-6">
-                  <select class="form-control" name="" id="">
-                    <option value="1">Today</option>
-                    <option value="2">Last 7 Days</option>
-                    <option value="3">This Month</option>
-                  </select>
-                </div>
-              </div>
-              <hr class="m-0"/>
-              <div class="row p-4">
-                <div class="col-md-6">
-                    <small class="fw-bold">TOTAL SALES</small>
-                    <h4 class="fw-normal">$33,400.00</h4>
-                </div>
-                <div class="col-md-6 text-right text-muted">
-                    <span class="d-block">Jun 1</span>
-                    <span>239 orders</span>
-                </div>
-              </div>
-              <small class="fw-bold mx-4">TOTAL SALES BY CHANNEL</small>
-              <hr/>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <div class="row">
-                      <div class="col-md-6">
-                        <span>Front Store</span>
-                        <h5 class="mt-2">$44,430.00</h5>
-                      </div>
-                      <div class="col-md-6 text-right">
-                        <a href="#" class="btn btn-link text-right d-block p-0">View dashboard</a>
-                        <span class="text-muted">445,342 orders</span>
-                      </div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="row">
-                      <div class="col-md-6">
-                          <span>Mobile Store</span>
-                          <h5 class="mt-2">$3,932.00</h5>
-                        </div>
-                        <div class="col-md-6 text-right">
-                          <a href="#" class="btn btn-link text-right d-block p-0">View dashboard</a>
-                          <span class="text-muted">32,322 orders</span>
-                        </div>
-                  </div>
-                </li>
-              </ul>
+
+                <br />
+                <div className="row">
+                    <div className="col-md-6">
+                        <Layout>
+                            <Layout.Section>
+                                <Card sectioned>
+                                    <div className="heading">
+                                        <Heading element="h1">Automatically check for new images</Heading>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-8">
+                                            <p>Image Optimizer will periodically check for and optimize new product, collection, asset, and blog post featured images.</p>
+                                            <br />
+                                            <Button destructive disabled>
+                                                Buy shipping label
+                                            </Button>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <img src={firstImage} />
+                                        </div>
+                                    </div>
+                                </Card>
+                            </Layout.Section>
+                        </Layout>
+
+
+                    </div>
+                    <div className="col-md-6">
+                        <Layout>
+                            <Layout.Section>
+                                <Card sectioned>
+                                    <div className="heading">
+                                        <Heading element="h1">Manual File Uploader</Heading>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-8">
+                                            <p>You need to manually compress some images such as homepage slides, blog images, etc. </p>
+                                            <br /><br/>
+                                            <Button onClick={RedirectToPage}>
+                                                Manual Uploader
+                                            </Button>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <img src={firstImage} />
+                                        </div>
+                                    </div>
+                                </Card>
+                            </Layout.Section>
+                        </Layout>
+
+
                     </div>
                 </div>
-            </div>
+                <br />
+                <Layout>
+                    <Layout.Section>
+
+                        <Card title="Optimization History" sectioned>
+                            <DataTable
+                                columnContentTypes={[
+                                    'text',
+                                    'numeric',
+                                    'numeric',
+                                    'text',
+                                    'text',
+                                    'text'
+                                ]}
+                                headings={[
+                                    'Product',
+                                    'Status',
+                                    'Images',
+                                    'Original',
+                                    'Optimized',
+                                    , 'Saved',
+                                    'Saved %'
+                                ]}
+                                rows={rows}
+
+                                footerContent={`Showing ${rows.length} of ${rows.length} results`}
+                            />
+                        </Card>
+                    </Layout.Section>
+                </Layout>
+                <br />
+                <div className="row">
+                    <div className="col-md-6">
+                        <Layout>
+                            <Layout.Section>
+                                <Card sectioned>
+                                    <div className="heading">
+                                        <Heading element="h1">Need Help?</Heading>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-8">
+                                            <p>Available: Monday - Friday, 9am to 6pm ACDT
+                                                <br /><br />
+                                                The Image Optimizer Customer Success Team is based in Adelaide, South Australia and will promptly reply to all questions
+                                            </p>
+                                            <br />
+                                            <Button >
+                                                Contact Us
+                                            </Button>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <img src={support} />
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </Card>
+                            </Layout.Section>
+                        </Layout>
+
+
+                    </div>
+                    <div className="col-md-6">
+                        <Layout>
+                            <Layout.Section>
+                                <Card sectioned>
+                                    <div className="heading">
+                                        <Heading element="h1">Manual File Uploader</Heading>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-8">
+                                            <br />
+                                            <p>Thank you for choosing Image Optimizer to compress and optimize your images! </p>
+                                            <br />
+                                            <Heading element="h1">Like Image OPtimize?</Heading>
+                                            <br /><br />
+                                            <ButtonGroup>
+                                                <Button>Not Really</Button>
+                                                <Button primary>Yes!</Button>
+                                            </ButtonGroup>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <img src={review} className="img1" />
+                                        </div>
+                                    </div>
+                                </Card>
+                            </Layout.Section>
+                        </Layout>
+
+
+                    </div>
+                </div>
+            </Page>
+                           :null 
+                         
+                         }
+            
+            {
+                showManualUpload ?
+                <ManualFile/>
+                :null
+            }
+          </div>
         );
     }
-}
+
 
 export default Dashboard;

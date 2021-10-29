@@ -2,8 +2,18 @@ import './ManualFile.css';
 
 import React, { useCallback, useState } from 'react';
 import { Caption, DropZone,Thumbnail,ButtonGroup, TextContainer, TextField, Button, Heading, Select, RadioButton, Stack, Card, Layout, Checkbox, ProgressBar, TextStyle, DisplayText, List, Banner, Page, Badge } from '@shopify/polaris';
+import Dashboard from '../Dashboard/Dashboard';
 
 export default function ManualFile() {
+    const [showDashboard, setShowDashboard] = useState(false);
+    const [showManualUpload, setshowManualUpload] = useState(true);
+    const showDashboardCmp = () => setShowDashboard(true);
+    const hideManualUploadCmp = () => setshowManualUpload(false);
+        
+    function RedirectToPage(){
+        hideManualUploadCmp();
+        showDashboardCmp();
+    }
     const [selected, setSelected] = useState('today');
 
     const handleSelectChange = useCallback((value) => setSelected(value), []);
@@ -49,18 +59,20 @@ export default function ManualFile() {
     </Stack>
   );
     return (
+        <div>
+        {showManualUpload ?
+        
         <Page
-            breadcrumbs={[{ content: 'Products', url: '/products' }]}
+            
             title="Manual File Uploader"
             titleMetadata={<Badge status="attention">Verified</Badge>}
-            primaryAction={{ content: 'Save', disabled: true }}
-            secondaryActions={[{ content: 'Duplicate' }, { content: 'View on your store' }]}
-            pagination={{
-                hasPrevious: true,
-                hasNext: true,
-            }}>
+        >
             <br /><br />
 
+            <div className="MoveBack">
+                <Button primary onClick={RedirectToPage}>Dashboard</Button>
+                </div>
+                <br/>
             <Banner
                 status="info"
 
@@ -158,6 +170,13 @@ export default function ManualFile() {
                         </Layout.Section>
                         </Layout>
         </Page>
+    :null}
+    {
+        showDashboard ?
+        <Dashboard/>
+        :null
+    }
+    </div>
     );
 
 }

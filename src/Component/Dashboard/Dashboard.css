@@ -103,3 +103,33 @@ form.form-horizontal.row-separator.d-flex.flex-wrap.w-100 {
     padding-bottom: 37px;
     border-bottom: 1ps;
 }
+span.Polaris-Banner__Text {
+    font-size: 1.2rem;
+}
+button.Polaris-Banner__Button {
+    font-size: 1.2rem;
+}
+.planeLevel{
+    margin-top: 0 px  ;
+        font-weight: bold;
+        text-align: center;
+}
+a.Polaris-Link {
+    font-size: 1rem;
+    font-weight: 600;
+}
+span.Polaris-Button__Text {
+    font-size: 11px;
+}
+button.Polaris-Button {
+    min-height: 2rem;
+}
+.Polaris-Heading {
+    font-size: 1.2rem;
+}
+p {
+    font-size: 1.1rem;
+}
+img.img1 {
+    width: 95%;
+}

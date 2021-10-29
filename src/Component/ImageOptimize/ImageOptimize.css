@@ -157,10 +157,17 @@ text-align: center;
         }
 
         .app-wrapper {
-            max-width: 97%;
-            margin-left: 25px;        
+            padding-top:52px;
+            max-width: 100%;
+            margin-left: 8%;        
         }
-
+        .Polaris-Select {
+            width: 100%;
+        }
+        span.Polaris-Select__SelectedOption {
+            font-size: 1.2rem;
+        }
+        
         span.Polaris-Choice__Label {
             font-weight: 600;
             font-size: 1.5rem;
@@ -175,5 +182,26 @@ text-align: center;
             font-size: 2.2rem;
         }
         .lastStep{
+            text-align: center;
+        }
+        .next {
+            float: right;
+        }
+        .centerImage{
+            width: 24%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        .Polaris-ProgressBar__Indicator {
+            height: inherit;
+            width: 0;
+            background-color: #bbeef5;
+        }
+        .head1{
+            text-align: center;
+        }
+        .bodytext{
             text-align: center;
         }

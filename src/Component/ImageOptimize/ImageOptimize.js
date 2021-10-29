@@ -1,9 +1,77 @@
 import React, { useCallback, useState } from 'react';
-import { TextField, Button, Heading, Select, RadioButton, Stack, Card, Layout, Checkbox, ProgressBar, TextStyle, DisplayText,List,Banner } from '@shopify/polaris';
+import {Page, TextField, Button, Heading, Select, RadioButton, Stack, Card, Layout, Checkbox, ProgressBar, TextStyle, DisplayText, List, Banner } from '@shopify/polaris';
 import './ImageOptimize.css';
+import camera from './camera.png';
+import Dashboard from '../Dashboard/Dashboard';
 
+function ImageOptimize() {
+    const [showDiv1, setshowDiv1] = useState(true);
+    const [showDiv2, setshowDiv2] = useState(false);
+    const [showDiv3, setshowDiv3] = useState(false);
+    const [showDiv4, setshowDiv4] = useState(false);
+    const [showDiv5, setshowDiv5] = useState(false);
+    const [showDiv6, setshowDiv6] = useState(false);
+    const [showDashboard, setDashboard]=useState(false);
+    const stepOneHide = () => setshowDiv1(false);
+   
 
-export default function ImageOptimize() {
+    const stepTwoShow = () => setshowDiv2(true);
+    const stepTwoHide = () => setshowDiv2(false);
+    // to move forward and backward steps
+    const stepOneShow= () => setshowDiv1(true);
+
+    const stepThirdShow = () => setshowDiv3(true);
+    const stepthirdHide=()=>setshowDiv3(false);
+    const stepFourthShow=()=> setshowDiv4(true);
+    const stepFourthHide=()=>setshowDiv4(false); 
+    const stepFifthHide=()=>setshowDiv5(false); 
+    const stepFifthShow=()=>setshowDiv5(true); 
+    const stepSixthHide=()=>setshowDiv6(false); 
+    const stepSixthShow=()=>setshowDiv6(true);
+    const readyShowDashboard=()=>setDashboard(true);
+    function forwardStepTwo(){
+        stepOneHide();
+        stepTwoShow();
+    }
+
+   
+    function StepMovetoThirdStep(){
+        stepThirdShow();
+        stepTwoHide();
+    }
+    function BacktoOneStep(){
+        stepOneShow();
+        stepTwoHide();
+    }
+    function BacktoSecondStep(){
+        stepTwoShow();
+        stepthirdHide();
+    }
+    function MovetoFourthStep(){
+        stepthirdHide();
+        stepFourthShow();
+    }
+    function BackToThirdStep(){
+        stepFourthHide();
+        stepThirdShow();
+    }
+    function MoveToLastStep(){
+        stepFourthHide();
+        stepFifthShow();
+    }
+    function BackuptoFourthStep(){
+        stepFourthShow();
+        stepFifthShow();
+    }
+
+    function MovetoOneMoreLast(){
+        stepFifthHide();
+        stepSixthShow();
+    }
+    function ShowDashboardComponent(){
+        stepSixthHide();
+        readyShowDashboard();
+    }
     const [value, setValue] = useState('');
     const [value1, setValue1] = useState('');
     const [selected, setSelected] = useState('today');
@@ -14,6 +82,7 @@ export default function ImageOptimize() {
     const handleChange = useCallback((newValue) => setValue(newValue), []);
     const handleChange1 = useCallback((newValue) => setValue(newValue), []);
 
+   
     const [Radiovalue, setRadioValue] = useState('disabled');
 
     const handleRadioChange = useCallback(
@@ -36,126 +105,135 @@ export default function ImageOptimize() {
     ];
     return (
         <div>
+
+            {showDiv1 ?
+            <Page   primaryAction={{content: 'Step 1/5', disabled: true}} >
             <div className="app-wrapper">
-                <fieldset className="setup-options">
-                    <h3>Optimize image ALT text, filename and size</h3>
-                    <h6>Increase your product image rankings in search engines by optimizing filename and adding ALT text to your
-                        product images.</h6>
-                    <div className="row input-options">
-                        <div className="col-xs-12 col-sm-12 col-lg-4">
-                            <div className="form-group text-left"><label for="image_alt">Image ALT text template</label>
-                                <TextField
-                                    value={value}
-                                    onChange={handleChange}
-                                    autoComplete="off"
-                                />
-                            </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-12 col-lg-4">
-                            <div className="form-group text-left"><label for="filename">Image filename template</label>
-                                <TextField
-                                    value={value1}
-                                    onChange={handleChange1}
-                                    autoComplete="off"
-                                />
-                            </div>
-                        </div>
-                        <div className="template-variables text-left d-lg-none col-sm-12">
-                            <p>Template variables:</p> <input type="text" className="d-none" />
-                            <div className="template-variable">
-                                #product_name#
-                            </div>
-                            <div className="template-variable">
-                                #product_type#
-                            </div>
-                            <div className="template-variable">
-                                #product_vendor#
-                            </div>
-                            <div className="template-variable">
-                                #shop_name#
-                            </div>
-                            <div className="template-variable">
-                                #variant_sku#
-                            </div>
-                            <div className="template-variable">
-                                #variant_barcode#
-                            </div>
-                            <div className="template-variable">
-                                #option1#
-                            </div>
-                            <div className="template-variable">
-                                #option2#
-                            </div>
-                            <div className="template-variable">
-                                #option3#
-                            </div>
-                            <div className="template-variable">
-                                #original_value#
-                            </div>
-                            <div className="template-variable">
-                                Need more ? Contact support
-                            </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-12 col-lg-4">
-                            <div className="form-group text-left"><label for="resize_to">Resize oversized images to:</label>
-                                <Select
+                <Heading element="h1">Optimize image ALT text, filename and size</Heading>
+                <div>Increase your product image rankings in search engines by optimizing filename and adding ALT text to your
+                    product images.</div>
+                <br /><br />
+                <Layout>
+                    <Layout.Section>
+                        <Card title="Compression" sectioned>
+                            <div className="row input-options">
+                                <div className="col-xs-12 col-sm-12 col-lg-4">
+                                    <div className="form-group text-left"><label for="image_alt">Image ALT text template</label>
+                                        <TextField
+                                            value={value}
+                                            onChange={handleChange}
+                                            autoComplete="off"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-xs-12 col-sm-12 col-lg-4">
+                                    <div className="form-group text-left"><label for="filename">Image filename template</label>
+                                        <TextField
+                                            value={value1}
+                                            onChange={handleChange1}
+                                            autoComplete="off"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="template-variables text-left d-lg-none col-sm-12">
+                                    <p>Template variables:</p> <input type="text" className="d-none" />
+                                    <div className="template-variable">
+                                        #product_name#
+                                    </div>
+                                    <div className="template-variable">
+                                        #product_type#
+                                    </div>
+                                    <div className="template-variable">
+                                        #product_vendor#
+                                    </div>
+                                    <div className="template-variable">
+                                        #shop_name#
+                                    </div>
+                                    <div className="template-variable">
+                                        #variant_sku#
+                                    </div>
+                                    <div className="template-variable">
+                                        #variant_barcode#
+                                    </div>
+                                    <div className="template-variable">
+                                        #option1#
+                                    </div>
+                                    <div className="template-variable">
+                                        #option2#
+                                    </div>
+                                    <div className="template-variable">
+                                        #option3#
+                                    </div>
+                                    <div className="template-variable">
+                                        #original_value#
+                                    </div>
+                                    <div className="template-variable">
+                                        Need more ? Contact support
+                                    </div>
+                                </div>
+                                <div className="col-xs-12 col-sm-12 col-lg-4">
+                                    <div className="form-group text-left"><label for="resize_to">Resize oversized images to:</label>
+                                        <Select
 
-                                    options={options}
-                                    onChange={handleSelectChange}
-                                    value={selected}
-                                />
+                                            options={options}
+                                            onChange={handleSelectChange}
+                                            value={selected}
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="clearfix"></div>
-                    <div className="template-variables text-left d-none d-lg-block d-xl-block">
-                        <p>Template variables:</p> <input type="text" className="d-none" />
-                        <div className="template-variable">
-                            #product_name#
-                        </div>
-                        <div className="template-variable">
-                            #product_type#
-                        </div>
-                        <div className="template-variable">
-                            #product_vendor#
-                        </div>
-                        <div className="template-variable">
-                            #shop_name#
-                        </div>
-                        <div className="template-variable">
-                            #variant_sku#
-                        </div>
-                        <div className="template-variable">
-                            #variant_barcode#
-                        </div>
-                        <div className="template-variable">
-                            #option1#
-                        </div>
-                        <div className="template-variable">
-                            #option2#
-                        </div>
-                        <div className="template-variable">
-                            #option3#
-                        </div>
-                        <div className="template-variable">
-                            #original_value#
-                        </div>
-                        <div className="template-variable">
-                            Need more ? Contact support
-                        </div>
-                    </div>
-                    <div className="setup-actions"><button type="button" className="btn btn-shop">
-                        Next Step
-                    </button>
-                        {/* <!-- <button type="button" className="btn btn-shop-o">
-                Skip this step
-            </button> --> */}
-                    </div>
-                    <div className="clearfix"></div>
-                </fieldset>
+                            <div className="clearfix"></div>
+                            <div className="template-variables text-left d-none d-lg-block d-xl-block">
+                                <p>Template variables:</p> <input type="text" className="d-none" />
+                                <div className="template-variable">
+                                    #product_name#
+                                </div>
+                                <div className="template-variable">
+                                    #product_type#
+                                </div>
+                                <div className="template-variable">
+                                    #product_vendor#
+                                </div>
+                                <div className="template-variable">
+                                    #shop_name#
+                                </div>
+                                <div className="template-variable">
+                                    #variant_sku#
+                                </div>
+                                <div className="template-variable">
+                                    #variant_barcode#
+                                </div>
+                                <div className="template-variable">
+                                    #option1#
+                                </div>
+                                <div className="template-variable">
+                                    #option2#
+                                </div>
+                                <div className="template-variable">
+                                    #option3#
+                                </div>
+                                <div className="template-variable">
+                                    #original_value#
+                                </div>
+                                <div className="template-variable">
+                                    Need more ? Contact support
+                                </div>
+                            </div>
+                        </Card>
 
+                    </Layout.Section>
+                </Layout>
+                <br />
+                <div className="next" >
+                    <Button primary onClick={forwardStepTwo}>Next</Button>
+   
             </div>
-            <div className="app-wrapper">
+            </div>
+            </Page>
+            : null}
+                {showDiv2 ? 
+                <Page  primaryAction={{content: 'Step 2/5', disabled: true}}>
+                         <div className="app-wrapper">
                 <Heading element="h1">Online store dashboard</Heading>
                 <div>Choose a default compression method for your images. Don't worry, you can always change it later. </div>
                 <br /><br />
@@ -191,9 +269,20 @@ export default function ImageOptimize() {
 
                     </Layout.Section>
                 </Layout>
+               
                 <br />
-                <Button primary>Next</Button>
-                <br /><br />
+                <Button onClick={BacktoOneStep}>Back</Button>
+                <div className="next">
+                <Button primary onClick={StepMovetoThirdStep}>Next</Button>
+                   </div> 
+            </div>
+                </Page>
+                
+                : null}
+                {
+                    showDiv3?
+                    <Page  primaryAction={{content: 'Step 3/5', disabled: true}} >
+                        <div className="app-wrapper">
                 <Heading element="h1">Do you want to optimize your alt texts?</Heading>
                 <div>Choose if you want to automatically optimize your alt texts. Don't worry, you can always change it later. </div>
                 <br /><br />
@@ -210,13 +299,18 @@ export default function ImageOptimize() {
                     </Layout.Section>
                 </Layout>
                 <br />
-                <Button>Back</Button>
-                <Button primary>Next</Button>
-            </div>
-            <br /><br />
-
-            <div>
-                <Heading element="h1">Do you want to optimize your image filenames?</Heading>
+                <Button onClick={BacktoSecondStep}>Back</Button>
+                <div className="next">
+                <Button primary onClick={MovetoFourthStep}>Next</Button>
+                </div>
+                </div>
+                    </Page>
+                :null}
+                {
+                    showDiv4?
+                    <Page primaryAction={{content:'step 4/5',disabled:true}}>
+                        <div className="app-wrapper">
+                        <Heading element="h1">Do you want to optimize your image filenames?</Heading>
                 <div>Choose if you want to automatically optimize your image filenames.</div>
                 <br /><br />
                 <Layout>
@@ -232,26 +326,41 @@ export default function ImageOptimize() {
                     </Layout.Section>
                 </Layout>
                 <br />
-                <Button>Back</Button>
-                <Button primary>Next</Button>
-
-                <br /><br />
-            </div>
-            <div className="lastStep">
-                <Heading element="h1" style={{ marginTop: `2rem` }}>Optimizing your images</Heading>
-                <div>We are currently optimizing your images. Please wait.</div>
-                <br />
-                <ProgressBar progress={70} color="primary" />
-                <br /><br />
-            </div>
-
-            <div>
-                <DisplayText size="large" align="center">Congratulation on your optimization!</DisplayText>
-
-                <div className="col-md-3">
-
+                <Button onClick={BackToThirdStep}>Back</Button>
+                <div className="next">
+                <Button primary onClick={MoveToLastStep}>Next</Button>
                 </div>
-                <div className="col-md-12">
+                <br /><br />
+                        </div>
+                    </Page>
+                    :null
+                }
+            {
+                showDiv5?
+                <Page primaryAction={{content: 'Step 6/5', disabled: true}}>
+                    <div className="app-wrapper">
+                        <img src={camera} alt="Camera Optimize" className="centerImage"/>
+                <div className="head1">
+                    <Heading element="h1" >Optimizing your images</Heading>
+               </div>
+                <div className="bodytext">We are currently optimizing your images. Please wait.</div>
+                <br />
+                <ProgressBar progress={100} color="primary" />
+                <br /><br />
+                <br />
+             
+                <div className="next">
+                <Button primary onClick={MovetoOneMoreLast}>Next</Button>
+                    </div>
+                    </div>
+                </Page>
+        :null
+
+        }
+        {
+            showDiv6?
+            <Page>
+                    <div className="app-wrapper">
                     <Layout>
                         <Layout.Section>
                             <Card sectioned>
@@ -276,12 +385,22 @@ export default function ImageOptimize() {
                             </Card>
                         </Layout.Section>
                     </Layout>
-                </div>
-                <div className="col-md-3">
-
-                </div>
-
+                <br/>
+                <div className="next">
+                <Button primary onClick={ShowDashboardComponent}>Move to Dashboard</Button>
+                    </div>
+                    </div>
+            </Page>
+            :null
+        }
+        {
+            showDashboard?
+            <Dashboard/>
+            :null
+        }
             </div>
-        </div>
+  
     );
 }
+const Text = () => <div>You clicked the button!</div>;
+export default ImageOptimize;

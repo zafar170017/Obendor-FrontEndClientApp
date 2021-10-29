@@ -1,331 +1,58 @@
-import React, {useCallback, useRef, useState} from 'react';
-import {AppProvider, ActionList, Avatar, Card, ContextualSaveBar, FormLayout, Frame, Layout, Loading, Modal, Navigation, Page, SkeletonBodyText, SkeletonDisplayText, SkeletonPage, TextContainer, TextField, Toast, TopBar} from '@shopify/polaris';
-import {ArrowLeftMinor, ConversationMinor, HomeMajor, OrdersMajor} from '@shopify/polaris-icons';
+import logo from './logo.svg';
+import './App.css';
+import React from 'react';
+import { BrowserRouter,Switch, Route,withRouter} from "react-router-dom";
+import Navbar from './Component/NavBar/NavBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Sidebar from './Component/sidebar/sidebar';
 import Dashboard from './Component/Dashboard/Dashboard';
-import ManualFile from './Component/ManualUploader/ManualFile';
+import ConvertImage from './Component/ConvertImage/ConvertImage';
 import ImageOptimize from './Component/ImageOptimize/ImageOptimize';
-export default function App() {
-  const defaultState = useRef({
-    emailFieldValue: 'dharma@jadedpixel.com',
-    nameFieldValue: 'Jaded Pixel',
-  });
-  const skipToContentRef = useRef(null);
+import ManualFile from './Component/ManualUploader/ManualFile';
+import faq from './Component/FAQ/faq';
 
-  const [toastActive, setToastActive] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isDirty, setIsDirty] = useState(false);
-  const [searchActive, setSearchActive] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
-  const [userMenuActive, setUserMenuActive] = useState(false);
-  const [mobileNavigationActive, setMobileNavigationActive] = useState(false);
-  const [modalActive, setModalActive] = useState(false);
-  const [nameFieldValue, setNameFieldValue] = useState(
-    defaultState.current.nameFieldValue,
-  );
-  const [emailFieldValue, setEmailFieldValue] = useState(
-    defaultState.current.emailFieldValue,
-  );
-  const [storeName, setStoreName] = useState(
-    defaultState.current.nameFieldValue,
-  );
-  const [supportSubject, setSupportSubject] = useState('');
-  const [supportMessage, setSupportMessage] = useState('');
 
-  const handleSubjectChange = useCallback(
-    (value) => setSupportSubject(value),
-    [],
-  );
-  const handleMessageChange = useCallback(
-    (value) => setSupportMessage(value),
-    [],
-  );
-  const handleDiscard = useCallback(() => {
-    setEmailFieldValue(defaultState.current.emailFieldValue);
-    setNameFieldValue(defaultState.current.nameFieldValue);
-    setIsDirty(false);
-  }, []);
-  const handleSave = useCallback(() => {
-    defaultState.current.nameFieldValue = nameFieldValue;
-    defaultState.current.emailFieldValue = emailFieldValue;
+class App extends React.Component {
+  
+  render() {
+    var dashboard=false;
+    if(dashboard==true){
 
-    setIsDirty(false);
-    setToastActive(true);
-    setStoreName(defaultState.current.nameFieldValue);
-  }, [emailFieldValue, nameFieldValue]);
-  const handleNameFieldChange = useCallback((value) => {
-    setNameFieldValue(value);
-    value && setIsDirty(true);
-  }, []);
-  const handleEmailFieldChange = useCallback((value) => {
-    setEmailFieldValue(value);
-    value && setIsDirty(true);
-  }, []);
-  const handleSearchResultsDismiss = useCallback(() => {
-    setSearchActive(false);
-    setSearchValue('');
-  }, []);
-  const handleSearchFieldChange = useCallback((value) => {
-    setSearchValue(value);
-    setSearchActive(value.length > 0);
-  }, []);
-  const toggleToastActive = useCallback(
-    () => setToastActive((toastActive) => !toastActive),
-    [],
-  );
-  const toggleUserMenuActive = useCallback(
-    () => setUserMenuActive((userMenuActive) => !userMenuActive),
-    [],
-  );
-  const toggleMobileNavigationActive = useCallback(
-    () =>
-      setMobileNavigationActive(
-        (mobileNavigationActive) => !mobileNavigationActive,
-      ),
-    [],
-  );
-  const toggleIsLoading = useCallback(
-    () => setIsLoading((isLoading) => !isLoading),
-    [],
-  );
-  const toggleModalActive = useCallback(
-    
-    () => setModalActive((modalActive) => !modalActive),
-    [],
-  );
+      return (
+        <BrowserRouter>
+        <div className="App">
+          <div>
+          <Navbar />
+          <div className="container-fluid h-100 p-0">
+            <div>
+              <div className="flex-row d-flex align-items-stretch m-0">
+                <Sidebar />
+          
+                <Switch>
+                  <Route exact path="/" component={withRouter(Dashboard)} />
+                  <Route exact path="/ConvertImage" component={withRouter(ConvertImage)}  />
+                  <Route exact path="/OptimizeImage" component={withRouter(ImageOptimize)}  />
+                  <Route exact path="/ManualFile" component={withRouter(ManualFile)}  />
+                  <Route exact path="/Faq" component={withRouter(faq)}  />
+                </Switch>
+               
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        </BrowserRouter>
+      );
+    }
+    else{
+      return( <div className="App">
+       <ImageOptimize/>
+      </div>
+      );
+    }
 
-  const toastMarkup = toastActive ? (
-    <Toast onDismiss={toggleToastActive} content="Changes saved" />
-  ) : null;
-
-  const userMenuActions = [
-    {
-      items: [{content: 'Community forums'}],
-    },
-  ];
-
-  const contextualSaveBarMarkup = isDirty ? (
-    <ContextualSaveBar
-      message="Unsaved changes"
-      saveAction={{
-        onAction: handleSave,
-      }}
-      discardAction={{
-        onAction: handleDiscard,
-      }}
-    />
-  ) : null;
-
-  const userMenuMarkup = (
-    <TopBar.UserMenu
-      actions={userMenuActions}
-      name="Dharma"
-      detail={storeName}
-      initials="D"
-      open={userMenuActive}
-      onToggle={toggleUserMenuActive}
-    />
-  );
-
-  const searchResultsMarkup = (
-    <ActionList
-      items={[{content: 'Shopify help center'}, {content: 'Community forums'}]}
-    />
-  );
-
-  const searchFieldMarkup = (
-    <TopBar.SearchField
-      onChange={handleSearchFieldChange}
-      value={searchValue}
-      placeholder="Search"
-    />
-  );
-
-  const topBarMarkup = (
-    <TopBar
-      showNavigationToggle
-      userMenu={userMenuMarkup}
-      searchResultsVisible={searchActive}
-      searchField={searchFieldMarkup}
-      searchResults={searchResultsMarkup}
-      onSearchResultsDismiss={handleSearchResultsDismiss}
-      onNavigationToggle={toggleMobileNavigationActive}
-    />
-  );
-
-  const navigationMarkup = (
-    <Navigation location="/">
-      <Navigation.Section
-        items={[
-          {
-            label: 'Back to Shopify',
-            icon: ArrowLeftMinor,
-          },
-        ]}
-      />
-      <Navigation.Section
-        separator
-        title="Image OPtimzier"
-        items={[
-          {
-            label: 'Dashboard',
-            icon: HomeMajor,
-            onClick: toggleIsLoading,
-          },
-          {
-            label: 'Image Optimzation',
-            icon: OrdersMajor,
-            onClick: toggleIsLoading,
-          },
-        ]}
-        action={{
-          icon: ConversationMinor,
-          accessibilityLabel: 'Contact support',
-          onClick: toggleModalActive,
-        }}
-      />
-    </Navigation>
-  );
-
-  const loadingMarkup = isLoading ? <Loading /> : null;
-
-  const skipToContentTarget = (
-    <a id="SkipToContentTarget" ref={skipToContentRef} tabIndex={-1} />
-  );
-
-  const actualPageMarkup = (
-    // <Page title="Account">
-    //   <Layout>
-    //     {skipToContentTarget}
-    //     <Layout.AnnotatedSection
-    //       title="Account details"
-    //       description="Jaded Pixel will use this as your account information."
-    //     >
-    //       <Card sectioned>
-    //         <FormLayout>
-    //           <TextField
-    //             label="Full name"
-    //             value={nameFieldValue}
-    //             onChange={handleNameFieldChange}
-    //             autoComplete="name"
-    //           />
-    //           <TextField
-    //             type="email"
-    //             label="Email"
-    //             value={emailFieldValue}
-    //             onChange={handleEmailFieldChange}
-    //             autoComplete="email"
-    //           />
-    //         </FormLayout>
-    //       </Card>
-    //     </Layout.AnnotatedSection>
-    //   </Layout>
-    // </Page>
-    <page>
-      <Dashboard/>
-    </page>
-  );
-
-  const loadingPageMarkup = (
-<page>
-  <ManualFile/>
-</page>
-  );
-
-  const pageMarkup = isLoading ? loadingPageMarkup : actualPageMarkup;
-
-  const modalMarkup = (
-    <Modal
-      open={modalActive}
-      onClose={toggleModalActive}
-      title="Contact support"
-      primaryAction={{
-        content: 'Send',
-        onAction: toggleModalActive,
-      }}
-    >
-      <Modal.Section>
-        <FormLayout>
-          <TextField
-            label="Subject"
-            value={supportSubject}
-            onChange={handleSubjectChange}
-            autoComplete="off"
-          />
-          <TextField
-            label="Message"
-            value={supportMessage}
-            onChange={handleMessageChange}
-            autoComplete="off"
-            multiline
-          />
-        </FormLayout>
-      </Modal.Section>
-    </Modal>
-  );
-
-  const theme = {
-    logo: {
-      width: 124,
-      topBarSource:
-        'https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-color.svg?6215648040070010999',
-      contextualSaveBarSource:
-        'https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-gray.svg?6215648040070010999',
-      url: 'http://jadedpixel.com',
-      accessibilityLabel: 'Jaded Pixel',
-    },
-  };
-  return (
-    <div style={{height: '500px'}}>
-      <AppProvider
-        theme={theme}
-        i18n={{
-          Polaris: {
-            Avatar: {
-              label: 'Avatar',
-              labelWithInitials: 'Avatar with initials {initials}',
-            },
-            ContextualSaveBar: {
-              save: 'Save',
-              discard: 'Discard',
-            },
-            TextField: {
-              characterCount: '{count} characters',
-            },
-            TopBar: {
-              toggleMenuLabel: 'Toggle menu',
-
-              SearchField: {
-                clearButtonLabel: 'Clear',
-                search: 'Search',
-              },
-            },
-            Modal: {
-              iFrameTitle: 'body markup',
-            },
-            Frame: {
-              skipToContent: 'Skip to content',
-              navigationLabel: 'Navigation',
-              Navigation: {
-                closeMobileNavigationLabel: 'Close navigation',
-              },
-            },
-          },
-        }}
-      >
-        <Frame
-          topBar={topBarMarkup}
-          navigation={navigationMarkup}
-          showMobileNavigation={mobileNavigationActive}
-          onNavigationDismiss={toggleMobileNavigationActive}
-          skipToContentTarget={skipToContentRef.current}
-        >
-          {contextualSaveBarMarkup}
-          {loadingMarkup}
-          {pageMarkup}
-          {toastMarkup}
-          {modalMarkup}
-        </Frame>
-      </AppProvider>
-    </div>
-  );
+  }
 }
+
+
+export default App;
